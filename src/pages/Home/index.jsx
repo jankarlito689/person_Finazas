@@ -1,108 +1,131 @@
 import './home.css';
 import Logo from '../../Components/Logo';
+import FinanzasImage from '../../assets/Finanzas.png';
+import { useEffect } from 'react';
+
+
 export default function Home() {
+    //se encarga de controlar el scroll de navbar
+    useEffect(() => {
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      }, []);
+
     return(
         <>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div div class="container-fluid d-flex justify-content-around">
-                <a class="navbar-brand" href="#"><Logo></Logo></a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav gap-4">
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Caracteristicas</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Como funciona</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Seguridad</a>
-                        </li>
+        <nav className="navbar navbar-expand-lg fixed-top">
+  <div className="container-fluid">
+    <a className="navbar-brand hover-effect" href="#"><Logo /></a>
+    
+    <button 
+      className="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    
+    <div className="collapse navbar-collapse" id="navbarNav">
+      <ul className="navbar-nav mx-auto gap-4">
+        <li className="nav-item">
+          <a className="nav-link hover-effect" href="#">Inicio</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link hover-effect" href="#">Saber mas</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link hover-effect" href="#">Cómo funciona</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link hover-effect" href="#">Ayuda</a>
+        </li>
+      </ul>
+      
+      <div className="ingresar d-flex gap-3">
+        <a className="btn btn-outline-light" href="/login">Iniciar Sesión</a>
+        <a className="btn btn-naranja hover-effect" href="/Register">Registrarse</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-                        
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                        </li>
+<main className='container' style={{ marginTop: '80px' }}>
+  {/* Hero Section */}
+  <section className='text-center py-5 my-4'>
+    <h1 className='titulo'>
+      Nuestra plataforma permite gestionar tu dinero con simplicidad y rapidez
+    </h1>
+    <a className="btn btn-naranja mt-4 hover-effect" href="/Register">
+      Comenzar ahora
+    </a>
+  </section>
 
-                        
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Ayuda</a>
-                        </li>
-                    </ul>
-                </div>
-                <div className="ingresar">
-                    <a className='btn' href="/login">Iniciar Sesión</a>
-                    <a className='btn btn-naranja' href="/Register">Registrarse</a>
-                </div>
-            </div>
-        </nav>
-        <main className='container d-flex flex-column justify-content-center align-items-center'>
-            <section className='text-center w-50'>
-                    <h1 className='titulo mt-5'>Nuestra plataforma permite gestionar tu dinero con simplicidad, rapidez y seguridad.</h1>
-                    <sub className='subtitulo'>Todo lo que necesitás al alcance de un click.</sub>
-            </section>
-            <section ection className='row w-100 justify-content-center mt-5'>
-                <div className="col-4 text-center">
-                    <h3 className='texto_gradiente'>Transformar las finanzas es facil</h3>
-                    <div className="card tarjeta">
-                        <div className="card-body">
-                            <h5 className="card-title">Usuarios Activos</h5>
-                            <p className='fs-1 fw-bold'>+20M</p>
-                            <p className="card-text">Únete a nuestra comunidad de 20M+ 
-                            usuarios activos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 img-chica">
-                </div>
-                <div className="col-4">
-                <div className="card tarjeta">
-                        <div className="card-body">
-                            <h5 className="card-title">Alcance Global</h5>
-                            <p className='fs-1 fw-bold'>+175</p>
-                            <p className="card-text">Únete a nuestra comunidad de 20M+ 
-                            usuarios activos.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className='d-flex mt-5 px-5'>
-                <div>
-                    <h3 className='texto_gradiente'>Nuestro  método integral 
-                    de gestión financiera.</h3>
-                </div>
-                <div className='w-75 px-5'>
-                    <p>Nuestro método integral de gestión financiera en Bankster combina simplicidad, control y seguridad en cada paso.
-                    Ofrecemos una plataforma que te permite administrar todas tus finanzas en un solo lugar, con herramientas diseñadas para facilitar la planificación, seguimiento y optimización de tus recursos.</p>
-                </div>
-            </section>
-            <section className='row w-100 g-5 mt-5'>
-                <div className="card tarjeta col-4 h-25">
-                    <div className="card-body">
-                        <p className='fs-1 fw-bold'>+260M</p>
-                        <p className="card-text">Nuestro paso a paso para simplificar tu
-                        gestión financiera.</p>
-                        <div className="circle-container">
-                            <div className="circle"></div>
-                            <div className="circle"></div>
-                            <div className="circle"></div>
-                            <div className="circle"></div>
-                            <div className="circle"></div>
-                            <div className="circle"></div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-8">
-                    <div className="img-chicos">
-                    </div>
-                </div>
-            </section>
-        </main>
-            
+  {/* Sección Transformar Finanzas */}
+  <section className='row justify-content-center my-5 py-4'>
+    <div className="col-lg-6 text-center">
+      <h3 className='texto_gradiente'>Transformar las finanzas es fácil</h3>
+    </div>
+  </section>
+
+  {/* Sección Método Integral */}
+  <section className="row my-5 py-4 align-items-center">
+    <div className="col-lg-6 mb-4 mb-lg-0">
+      <h3 className="texto_gradiente mb-4">Nuestro método integral de gestión financiera</h3>
+      <p className="text-muted mb-4">
+        Bankster combina simplicidad y control en una sola plataforma.
+      </p>
+      <button className="btn btn-naranja hover-effect">
+        Saber más
+      </button>
+    </div>
+    <div className="col-lg-6">
+      <div className="imagen-contenedor">
+        <img 
+          src={FinanzasImage} 
+          alt="Dashboard de Bankster mostrando estadísticas financieras" 
+          className="img-fluid"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Testimonios */}
+  <section className="my-5 py-4">
+    <h3 className="texto_gradiente text-center mb-5">Lo que dicen nuestros usuarios</h3>
+    <div className="avatar-container">
+      <img 
+        src="https://randomuser.me/api/portraits/women/44.jpg" 
+        alt="Usuario 1" 
+        className="avatar hover-effect"
+      />
+      <img 
+        src="https://randomuser.me/api/portraits/men/32.jpg" 
+        alt="Usuario 2" 
+        className="avatar hover-effect"
+      />
+      <img 
+        src="https://randomuser.me/api/portraits/women/68.jpg" 
+        alt="Usuario 3" 
+        className="avatar hover-effect"
+      />
+      <img 
+        src="https://randomuser.me/api/portraits/men/75.jpg" 
+        alt="Usuario 4" 
+        className="avatar hover-effect"
+      />
+    </div>
+  </section>
+</main>
         </>
     )
 }
