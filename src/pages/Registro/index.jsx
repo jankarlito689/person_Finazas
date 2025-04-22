@@ -115,126 +115,202 @@ export function Register() {
 
   return (
     <>
-      <header>
-        <nav className="navbar navbar-light">
-          <div className="container-fluid">
-            <Logo/>
-            <Link to="/" className="nav-link ms-auto txt-lima fw-bold fs-4 text-uppercase">
-              &lt; Volver
-            </Link>
+    {/* Sección de barra de navegación */}
+    <header className="sticky-top">
+  <nav className="navbar glass-nav">
+    <div className="container-fluid nav-content">
+      <div className="logo-wrapper">
+        <Logo width="160px" className="logo-hover"/>
+      </div>
+      
+      <Link to="/" className="back-btn">
+        <i className="bi bi-chevron-left"></i>
+        <span className="btn-text">Volver al inicio</span>
+      </Link>
+    </div>
+    <div className="nav-accent"></div>
+  </nav>
+</header>
+
+<main className="container-md my-5">
+  <div className="row justify-content-center">
+    <div className="col-xl-8 col-lg-10">
+      <form 
+        className="register-form p-4 p-lg-5" 
+        onSubmit={handleSubmit}
+      >
+        <div className="text-center mb-5">
+          <h1 className="titulo-form mb-3">Crea tu Cuenta</h1>
+          <p className="text-muted">Comienza a gestionar tus finanzas en pocos pasos</p>
+        </div>
+
+        <div className="row g-4">
+          {/* Sección de información personal */}
+          <div className="col-12">
+            <h4 className="subtitulo-form mb-4">Información Personal</h4>
           </div>
-        </nav>
-      </header>
+          
+          <div className="col-md-6">
+            <InputCheck
+              label="Nombre"
+              name="nombre"
+              value={text.nombre}
+              type="text"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-      <main className="container-md mt-5 register">
-        <form
-          action=""
-          className="p-2 p-md-4 p-lg-5"
-          onSubmit={handleSubmit}
-        >
-          <section className="row">
-            <div className="col-lg-6">
-              <InputCheck
-                name="nombre"
-                value={text.nombre}
-                type="text"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="col-md-6">
+            <InputCheck
+              label="Apellido Paterno"
+              name="apellidoPaterno"
+              value={text.apellidoPaterno}
+              type="text"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            <div className="col-lg-6">
-              <InputCheck
-                name="apellidoPaterno"
-                value={text.apellidoPaterno}
-                type="text"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="col-md-6">
+            <InputCheck
+              label="Apellido Materno"
+              name="apellidoMaterno"
+              value={text.apellidoMaterno}
+              type="text"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="col-lg-6">
-              <InputCheck
-                name="apellidoMaterno"
-                value={text.apellidoMaterno}
-                type="text"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="col-md-6">
+            <InputCheck
+              label="Teléfono"
+              name="telefono"
+              value={text.telefono}
+              type="tel"
+              onChange={handleChange}
+              pattern="[0-9]{10}"
+              required
+            />
+          </div>
 
-            <div className="col-lg-6">
-              <InputCheck
-                name="telefono"
-                value={text.telefono}
-                type="number"
-                onChange={handleChange}
-              />
-            </div>
+          {/* Sección de información financiera */}
+          <div className="col-12 mt-4">
+            <h4 className="subtitulo-form mb-4">Información Financiera</h4>
+          </div>
 
-            <div className="col-lg-6">
-              <InputCheck
-                name="correo"
-                value={text.correo}
-                type="text"
-                onChange={handleChange}
-              />
-              {errors.emailInvalido && (
-                <p className="text-danger">* El correo no es válido.</p>
-              )}
-            </div>
-
-            <div className="col-lg-6">
-              <InputCheck
-                name="clave"
-                value={text.clave}
-                type="password"
-                onChange={handleChange}
-              />
-
-              {errors.claveInvalida && (
-                <p className="text-danger">
-                  * La contraseña debe tener al menos 8 caracteres, una mayúscula,
-                  un número y un carácter especial.
-                </p>
-              )}
-            </div>
-
-            <div className="col-lg-6">
-              <InputCheck
-                name="validarClave"
-                value={text.validarClave}
-                type="password"
-                onChange={handleChange}
-              />
-              {errors.claveNoCoincide && (
-                <p className="text-danger">* La contraseña no coincide.</p>
-              )}
-            </div>
-          </section>
-          <section className="d-flex flex-column align-items-center justify-content-center">
-            <div className="form-check mx-2">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value="terminos_condiciones"
-                id="terminos_condiciones"
-              />
-              <label
-                className="form-check-label text-secondary"
-                htmlFor="terminos_condiciones"
-              >
-                Aceptar <b className="txt-lima">Términos y condiciones</b>
+          <div className="col-md-6">
+            <div className="form-group">
+              <label className="form-label d-flex align-items-center gap-2">
+                <i className="bi bi-cash-stack"></i>
+                Frecuencia de Ingresos
               </label>
+              <select 
+                name="ingresos" 
+                className="form-select custom-select"
+              >
+                <option value="">Seleccione una opción</option>
+                <option value="diario">Diario</option>
+                <option value="semanal">Semanal</option>
+                <option value="quincenal">Quincenal</option>
+                <option value="mensual">Mensual</option>
+              </select>
             </div>
-            <div>
-              <input
-                type="submit"
-                className="btn btn-naranja mt-4"
-                value="Registrarse"
-              />
-              {mensaje && <p className="message">{mensaje}</p>}
+          </div>
+
+          <div className="col-md-6">
+            <div className="form-group">
+              <label className="form-label d-flex align-items-center gap-2">
+                <i className="bi bi-briefcase"></i>
+                  Tipo de empleo
+              </label>
+              <select 
+                name="tipoEmpleo" 
+                className="form-select custom-select"
+                required
+              >
+                <option value="">Selecciona tu ocupación</option>
+                <option value="empleado">Empleado formal</option>
+                <option value="independiente">Trabajador independiente</option>
+                <option value="comerciante">Comerciante</option>
+                <option value="profesionista">Profesionista independiente</option>
+                <option value="estudiante">Estudiante</option>
+                <option value="amaCasa">Ama de casa</option>
+                <option value="jubilado">Jubilado/Pensionado</option>
+                <option value="servicios">Trabajador de servicios</option>
+                <option value="eventual">Trabajador eventual</option>
+                <option value="otros">Otros</option>
+              </select>
             </div>
-          </section>
-        </form>
-      </main>
+          </div>
+          {/* Sección de credenciales */}
+          <div className="col-12 mt-4">
+            <h4 className="subtitulo-form mb-4">Credenciales de Acceso</h4>
+          </div>
+
+          <div className="col-md-6">
+            <InputCheck
+              label="Correo Electrónico"
+              name="correo"
+              value={text.correo}
+              type="email"
+              onChange={handleChange}
+              required
+            />
+            {errors.emailInvalido && (
+              <div className="invalid-feedback d-block">
+                * El formato del correo no es válido
+              </div>
+            )}
+          </div>
+
+          <div className="col-md-6">
+            <InputCheck
+              label="Contraseña"
+              name="contraseña"
+              value={text.clave}
+              type="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="col-md-6">
+            <InputCheck
+              label="Confirmar Contraseña"
+              name="validar contraseña"
+              value={text.validarClave}
+              type="password"
+              onChange={handleChange}
+              required
+            />
+            {errors.claveNoCoincide && (
+              <div className="invalid-feedback d-block">
+                * Las contraseñas no coinciden
+              </div>
+            )}
+          </div>
+
+          {/* Botón de Registro */}
+          <div className="col-12 text-center mt-5">
+            <button 
+              type="submit" 
+              className="btn btn-naranja px-5 py-3 btn-registro"
+            >
+              <i className="bi bi-person-plus me-2"></i>
+              Crear Cuenta Gratis
+            </button>
+            {mensaje && (
+              <div className="alert alert-success mt-3 message" role="alert">
+                {mensaje}
+              </div>
+            )}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
     </>
   );
 }
